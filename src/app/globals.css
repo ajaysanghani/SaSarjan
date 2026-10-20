@@ -1,0 +1,84 @@
+:root {
+  --brand: #b5176b;
+  --bg: #fdf8fb;
+  --text: #2a1621;
+  --muted: #6e5865;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: radial-gradient(circle at 50% 40%, rgba(181, 23, 107, 0.08), transparent 60%);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.25rem;
+  max-width: 36rem;
+}
+
+.logo {
+  width: min(420px, 85vw);
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-family: var(--font-heading), Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: -0.01em;
+}
+
+p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.contact {
+  margin-top: 0.5rem;
+  color: var(--brand);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+
+.contact:hover {
+  opacity: 0.8;
+}
+
+footer {
+  font-size: 0.875rem;
+  color: var(--muted);
+  padding-top: 2rem;
+}
