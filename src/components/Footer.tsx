@@ -1,0 +1,89 @@
+import { siteConfig } from "@/config/site";
+
+export function Footer() {
+  const { name, tagline, nav, links, contactEmail, social, launchYear, cta } = siteConfig;
+  const year = new Date().getFullYear();
+  const years = year > launchYear ? `${launchYear}–${year}` : `${launchYear}`;
+
+  const external = [
+    links.notionFormUrl && { label: cta.primaryLabel, href: links.notionFormUrl, event: "cta_express_interest" },
+    links.whatsappCommunityUrl && {
+      label: cta.secondaryLabel,
+      href: links.whatsappCommunityUrl,
+      event: "cta_whatsapp_community",
+    },
+    ...social.map((s) => ({ label: s.label, href: s.url, event: "social_link" })),
+  ].filter(Boolean) as { label: string; href: string; event: string }[];
+
+  const legal = [
+    links.privacyNoticeUrl && { label: "Privacy notice", href: links.privacyNoticeUrl },
+    links.termsUrl && { label: "Terms", href: links.termsUrl },
+  ].filter(Boolean) as { label: string; href: string }[];
+
+  return (
+    <footer className="site-footer">
+      <div className="container site-footer__inner">
+        <div className="site-footer__about">
+          <p className="site-footer__name">{name}</p>
+          <p>{tagline}</p>
+          <p className="site-footer__status">This is not a political party or a government programme.</p>
+        </div>
+
+        <nav aria-label="Footer">
+          <h2 className="site-footer__heading">Explore</h2>
+          <ul className="site-footer__list">
+            {nav.map((item) => (
+              <li key={item.href}>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))}
+            <li>
+              <a href="#faq">FAQ</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div>
+          <h2 className="site-footer__heading">Take part</h2>
+          <ul className="site-footer__list">
+            {external.map((l) => (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-track={l.event}
+                  data-track-id="footer"
+                >
+                  {l.label}
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              </li>
+            ))}
+            {external.length === 0 && <li>Participation links will be published here soon.</li>}
+            {contactEmail && (
+              <li>
+                <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+              </li>
+            )}
+          </ul>
+        </div>
+      </div>
+
+      <div className="container site-footer__bottom">
+        <p>
+          © {years} {name}
+        </p>
+        {legal.length > 0 && (
+          <ul className="site-footer__legal">
+            {legal.map((l) => (
+              <li key={l.href}>
+                <a href={l.href}>{l.label}</a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </footer>
+  );
+}
