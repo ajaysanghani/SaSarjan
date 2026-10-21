@@ -1,12 +1,13 @@
-import { siteConfig } from "@/config/site";
+import { joinHref, siteConfig } from "@/config/site";
+import { Wordmark } from "./Wordmark";
 
 export function Footer() {
   const { name, tagline, nav, links, contactEmail, social, launchYear, cta } = siteConfig;
   const year = new Date().getFullYear();
   const years = year > launchYear ? `${launchYear}–${year}` : `${launchYear}`;
 
-  const external = [
-    links.notionFormUrl && { label: cta.primaryLabel, href: links.notionFormUrl, event: "cta_express_interest" },
+  const takePart = [
+    joinHref && { label: cta.primaryLabel, href: joinHref, event: "cta_join" },
     links.whatsappCommunityUrl && {
       label: cta.secondaryLabel,
       href: links.whatsappCommunityUrl,
@@ -24,6 +25,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="container site-footer__inner">
         <div className="site-footer__about">
+          <Wordmark />
           <p className="site-footer__name">{name}</p>
           <p>{tagline}</p>
           <p className="site-footer__status">This is not a political party or a government programme.</p>
@@ -46,21 +48,22 @@ export function Footer() {
         <div>
           <h2 className="site-footer__heading">Take part</h2>
           <ul className="site-footer__list">
-            {external.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-track={l.event}
-                  data-track-id="footer"
-                >
-                  {l.label}
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </a>
-              </li>
-            ))}
-            {external.length === 0 && <li>Participation links will be published here soon.</li>}
+            {takePart.map((l) => {
+              const isEmail = l.href.startsWith("mailto:");
+              return (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    {...(isEmail ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+                    data-track={l.event}
+                    data-track-id="footer"
+                  >
+                    {l.label}
+                    {!isEmail && <span className="sr-only"> (opens in a new tab)</span>}
+                  </a>
+                </li>
+              );
+            })}
             {contactEmail && (
               <li>
                 <a href={`mailto:${contactEmail}`}>{contactEmail}</a>

@@ -7,15 +7,15 @@
 - [ ] **WhatsApp Community invitation URL**: set `NEXT_PUBLIC_WHATSAPP_COMMUNITY_URL`.
 - [ ] **Confirm or replace the working name** "CoCreate India's Future" (`src/config/site.ts`: `name`, `wordmark`).
 - [ ] **Confirm the status statement.** The footer and FAQ say: "This is not a political party or a government programme. It is not endorsed by any government body." Confirm that this is accurate.
-- [ ] **Production domain**: set `NEXT_PUBLIC_SITE_URL` in the Production environment only.
+- [ ] **Production domain**: defaults to `https://sasarjan.com`. Point that domain at the Vercel project, or set `NEXT_PUBLIC_SITE_URL` to the real domain.
 
 ### Recommended before wider promotion
-- [ ] **Contact email**: set `NEXT_PUBLIC_CONTACT_EMAIL` once it is confirmed and someone monitors it. The previous coming-soon page in this repo showed `info@sasarjan.com`. It was left out on purpose until you confirm it applies to this initiative.
+- [ ] **Contact email**: defaults to `info@sasarjan.com`. Until a form URL is set, "Join the Initiative" opens an email to it, so make sure someone monitors it.
 - [ ] **Privacy notice**: publish one and set `NEXT_PUBLIC_PRIVACY_NOTICE_URL`. Cover what the Notion form collects, why, who can see it, how long it is kept, how to ask for deletion, and that Notion processes the data. Consider India's DPDP Act, 2023.
 - [ ] **Terms of participation** (optional): set `NEXT_PUBLIC_TERMS_URL`.
 - [ ] **Organisational structure**: once confirmed, update the "Is this a political party…" FAQ in `src/content/faqs.ts`.
 - [ ] **Social-sharing image**: add a real 1200×630 image as `src/app/opengraph-image.png` if you want link previews to show one.
-- [ ] **Logo**: the site uses a text wordmark and a simple SVG favicon (`src/app/icon.svg`). `public/logo.png` (the old SaSarjan logo) is still in the repo but not used.
+- [x] **Logo**: the SaSarjan logo (`public/logo.png`) appears in the header and footer. The favicon (`src/app/icon.png`) is the mandala cropped from it.
 
 ## Notion form setup (on Notion, not in this repo)
 
@@ -41,7 +41,7 @@ All were run against a production build (`pnpm build && pnpm start`) in headless
 - Keyboard: the first Tab reaches "Skip to main content". The mobile menu opens with Enter (`aria-expanded` = true) and Tab moves into it. Escape closes it and returns focus to the toggle. FAQ items open with Enter (native `<details>`).
 - Heading structure: one `h1`, one `h2` per section, `h3` for cards.
 - No browser console errors.
-- Unconfigured state: every CTA renders as a non-link "Coming soon" placeholder, `robots.txt` disallows crawling, `noindex` is set, and the sitemap is empty.
+- Without a form URL, "Join the Initiative" opens an email to the contact address. Without a WhatsApp URL, WhatsApp buttons are hidden.
 - Configured state, using test URLs `https://example.com/...` in a local build only: CTAs render as `<a target="_blank" rel="noopener noreferrer">` with screen-reader "(opens in a new tab)" text. Canonical, `og:url`, robots and sitemap use the configured domain.
 - Analytics: with a stubbed `window.plausible`, clicking a CTA, opening an FAQ and scrolling to the focus areas each fired one event, with no personal data.
 

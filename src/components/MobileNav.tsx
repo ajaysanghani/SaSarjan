@@ -61,7 +61,7 @@ export function MobileNav({ items, ctaHref, ctaLabel }: Props) {
             </li>
           ))}
         </ul>
-        <CtaLink href={ctaHref} label={ctaLabel} event="cta_express_interest" placement="mobile_menu" />
+        <CtaLink href={ctaHref} label={ctaLabel} event="cta_join" placement="mobile_menu" />
       </nav>
     </div>
   );

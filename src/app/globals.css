@@ -3,16 +3,17 @@
    ========================================================================== */
 
 :root {
-  --bg: #faf8f3;
-  --surface: #f2efe7;
-  --card: #fffdf9;
-  --border: #e3ddd0;
-  --text: #1c2a24;
-  --muted: #4b5a52;
-  --accent: #2c6a55;
-  --accent-strong: #1f4d3f;
-  --accent-soft: #e2eee7;
-  --focus: #b45309;
+  /* Brand: SaSarjan magenta (from the logo) on white. */
+  --bg: #ffffff;
+  --surface: #fbf6f9;
+  --card: #ffffff;
+  --border: #eee2e9;
+  --text: #2a1621;
+  --muted: #5e4a56;
+  --accent: #b61c67;
+  --accent-strong: #961556;
+  --accent-soft: #fbe9f2;
+  --focus: #1d4ed8;
 
   --font-sans: "Inter", "Noto Sans", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", Roboto,
     sans-serif;
@@ -208,21 +209,6 @@ main:focus {
   height: 1.1em;
 }
 
-.btn--unavailable,
-.btn--unavailable:hover {
-  background: var(--surface);
-  color: var(--muted);
-  border: 1.5px dashed var(--border);
-  cursor: not-allowed;
-  flex-direction: column;
-  gap: 0.1rem;
-}
-
-.btn__status {
-  font-size: 0.8125rem;
-  font-weight: 500;
-}
-
 .cta-row {
   display: flex;
   flex-wrap: wrap;
@@ -244,7 +230,7 @@ main:focus {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(250, 248, 243, 0.96);
+  background: rgba(255, 255, 255, 0.97);
   border-bottom: 1px solid var(--border);
 }
 
@@ -252,7 +238,7 @@ main:focus {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  min-height: 4rem;
+  min-height: 4.5rem;
 }
 
 .wordmark {
@@ -267,6 +253,18 @@ main:focus {
 
 .wordmark:hover {
   color: var(--text);
+}
+
+.wordmark__logo {
+  display: block;
+  width: auto;
+  height: 3.25rem;
+}
+
+@media (min-width: 600px) {
+  .wordmark__logo {
+    height: 3.6rem;
+  }
 }
 
 .wordmark__accent {
@@ -326,7 +324,7 @@ main:focus {
   padding: 0.5rem var(--gutter) 1.25rem;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 12px 24px rgba(28, 42, 36, 0.08);
+  box-shadow: 0 12px 24px rgba(42, 22, 33, 0.08);
 }
 
 .mobile-nav__panel[hidden] {
@@ -459,7 +457,7 @@ main:focus {
 }
 
 .hero__mesh-node {
-  fill: var(--tint-fg);
+  fill: var(--accent);
   stroke: var(--bg);
   stroke-width: 4;
 }
@@ -951,6 +949,11 @@ main:focus {
   margin-top: 0.25rem;
 }
 
+.invite__note {
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
 .invite__fallback {
   color: var(--muted);
   font-size: 0.875rem;
@@ -977,6 +980,9 @@ main:focus {
 @media (min-width: 900px) {
   .invite-grid {
     grid-template-columns: 1fr 1fr;
+  }
+  .invite-grid--single {
+    grid-template-columns: minmax(0, 40rem);
   }
 }
 
@@ -1040,21 +1046,15 @@ main:focus {
 
 .site-footer {
   padding-top: 3.5rem;
-  background: var(--accent-strong);
-  color: #e6efe9;
+  background: var(--surface);
+  border-top: 3px solid var(--accent);
+  color: var(--muted);
   font-size: 0.9375rem;
 }
 
-.site-footer a {
-  color: #fff;
-}
-
-.site-footer a:hover {
-  color: #cfe3d8;
-}
-
-.site-footer :focus-visible {
-  outline-color: #fbbf24;
+.site-footer .wordmark {
+  display: inline-block;
+  margin-bottom: 1rem;
 }
 
 .site-footer__inner {
@@ -1065,7 +1065,7 @@ main:focus {
 
 .site-footer__name {
   margin-bottom: 0.5rem;
-  color: #fff;
+  color: var(--text);
   font-family: var(--font-serif);
   font-size: 1.25rem;
   font-weight: 600;
@@ -1077,13 +1077,13 @@ main:focus {
 
 .site-footer__status {
   margin-top: 1rem;
-  color: #cfe3d8;
+  color: var(--muted);
   font-size: 0.875rem;
 }
 
 .site-footer__heading {
   margin-bottom: 0.75rem;
-  color: #fff;
+  color: var(--accent);
   font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -1105,8 +1105,8 @@ main:focus {
   justify-content: space-between;
   gap: 1rem;
   padding-block: 1.25rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
-  color: #cfe3d8;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
   font-size: 0.875rem;
 }
 

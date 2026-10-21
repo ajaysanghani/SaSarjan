@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site";
+import { joinHref, siteConfig } from "@/config/site";
 import { CtaLink } from "./CtaLink";
 
 export function Hero() {
@@ -17,9 +17,9 @@ export function Hero() {
           ))}
           <div className="cta-row">
             <CtaLink
-              href={links.notionFormUrl}
+              href={joinHref}
               label={cta.primaryLabel}
-              event="cta_express_interest"
+              event="cta_join"
               placement="hero"
             />
             <CtaLink

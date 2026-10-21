@@ -32,25 +32,25 @@ Production builds never show this notice.
 
 ### External URLs
 
-- `NEXT_PUBLIC_NOTION_FORM_URL` is the public link to the Notion participation form. The "Express Interest" buttons use it.
-- `NEXT_PUBLIC_WHATSAPP_COMMUNITY_URL` is the WhatsApp Community invitation link.
+- `NEXT_PUBLIC_NOTION_FORM_URL` is the public link to the Notion registration form. The "Join the Initiative" buttons use it. Until it is set, they open an email to the contact address (`info@sasarjan.com` by default).
+- `NEXT_PUBLIC_WHATSAPP_COMMUNITY_URL` is the WhatsApp Community invitation link. WhatsApp buttons and the community card appear only once it is set.
 
-Only absolute `http(s)` URLs are accepted. If a URL is missing or invalid, its buttons show a
-non-clickable "Coming soon" state and the page explains that the link is not available yet.
-Visitors are never sent to a guessed address.
+Only absolute `http(s)` URLs are accepted. Visitors are never sent to a guessed address.
+
+The logo is `public/logo.png`, set in `siteConfig.logo`. Set it to `null` to use the text wordmark instead.
 
 `NEXT_PUBLIC_*` values are built into the page, so **rebuild or redeploy after changing them**.
 
 ### Search indexing
 
-Until `NEXT_PUBLIC_SITE_URL` is set, the site sends `noindex`, `robots.txt` disallows crawling,
-and the sitemap is empty. This keeps preview deployments out of search results. Set it to the
-final domain only in the Production environment.
+The production URL defaults to `https://sasarjan.com`. Override it with `NEXT_PUBLIC_SITE_URL`.
+It is used for the canonical URL, `robots.txt` and the sitemap. Vercel already marks preview
+deployments `noindex`.
 
 ## Deploy on Vercel
 
 1. Go to [vercel.com/new](https://vercel.com/new) and import this GitHub repository. Vercel detects Next.js and pnpm on its own.
-2. Under **Settings → Environment Variables**, add the values from `.env.example`. Set `NEXT_PUBLIC_SITE_URL` for **Production** only.
+2. Under **Settings → Environment Variables**, add the values from `.env.example`.
 3. Deploy. Every push then creates a preview deployment, and merges to the production branch deploy to production.
 4. Add the custom domain under **Settings → Domains** when it has been decided.
 
@@ -64,13 +64,12 @@ scripts to `src/app/layout.tsx`. Both are cookieless. Events sent:
 
 | Event | When | Props |
 | --- | --- | --- |
-| `cta_express_interest` | Notion form button clicked | `id`: placement (hero, header, mobile_menu, invitation, footer) |
+| `cta_join` | "Join the Initiative" button clicked (form or email) | `id`: placement (hero, header, mobile_menu, invitation, footer) |
 | `cta_whatsapp_community` | WhatsApp button clicked | `id`: placement |
 | `faq_open` | An FAQ is opened | `id`: question id |
 | `focus_areas_viewed` | Focus areas section scrolled into view | — |
 
-A click is not a submission. The site cannot tell whether a Notion form was submitted, and it
-does not claim to. Never send personal data in event props. Before adding analytics, review
+A click is not a submission. The site cannot tell whether a form was submitted or an email sent. Never send personal data in event props. Before adding analytics, review
 consent requirements under India's Digital Personal Data Protection Act, 2023, and any other
 applicable law, and describe the analytics in the privacy notice.
 

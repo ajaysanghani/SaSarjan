@@ -93,7 +93,7 @@ export const participation = {
 export const principles = {
   eyebrow: "Principles and culture",
   heading: "How we choose to work together.",
-  lead: "These are founding principles. We will put them into practice, and refine how we apply them, openly over time.",
+  lead: "The principles that guide everything we do, and that we keep refining as we learn together.",
   items: [
     {
       title: "Transparency",
@@ -126,14 +126,14 @@ export const principles = {
       text: "Test ideas, acknowledge mistakes and improve what does not work.",
     },
   ],
-  note: "We aim to build a culture of openness, mutual respect, accountability and learning. Our governance and decision-making arrangements are still being developed, and we intend to shape them transparently with participants.",
+  note: "We work in a culture of openness, mutual respect, accountability and learning, and we shape how we make decisions together with participants, in the open.",
 };
 
 export const inclusion = {
   eyebrow: "Representation and inclusion",
   heading: "India's diversity should be reflected in who shapes its future.",
   body: "We welcome people across genders, generations, states, Union Territories, professions, languages and lived experiences. Meaningful participation should not depend solely on formal qualifications, financial means, metropolitan access or fluency in English.",
-  commitmentsHeading: "What we are working towards",
+  commitmentsHeading: "How we put this into practice",
   commitments: [
     "Outreach across rural, urban, remote and underserved locations.",
     "Meaningful participation by women and men across categories and responsibilities.",
@@ -142,13 +142,13 @@ export const inclusion = {
     "Encouragement of contributions in Indian languages.",
     "Periodic review of participation gaps and barriers.",
   ],
-  note: "Representation is an ongoing responsibility, not something we claim to have achieved. We treat it as a design objective to review and report on as the initiative grows.",
+  note: "Representation is an ongoing responsibility. We regularly review who is taking part, and who is missing, and act on what we find.",
 };
 
 export const process = {
   eyebrow: "How we work",
   heading: "From understanding to action.",
-  lead: "A simple, repeatable way of working. We are still developing this process, and our methods will evolve through open learning.",
+  lead: "A simple, repeatable way of working that we improve with every cycle.",
   steps: [
     {
       title: "Listen and Understand",
@@ -176,7 +176,7 @@ export const process = {
       text: "Publish appropriate progress updates, evaluate outcomes, learn from failures and revise proposals.",
     },
   ],
-  note: "Not every proposal will be adopted or implemented. Any future governance proposals should be developed through evidence, consultation, transparent reasoning and appropriate legal and institutional review.",
+  note: "Not every proposal is adopted or implemented. Governance proposals are developed through evidence, consultation, transparent reasoning and appropriate legal and institutional review.",
 };
 
 export const invitation = {
@@ -186,19 +186,19 @@ export const invitation = {
   closing:
     "Share what you know, what you want to learn and how you would like to contribute. You do not need to have every answer to begin.",
   form: {
-    title: "Express interest",
-    text: "Tell us about your background, the areas you care about and how you would like to contribute. The form opens on Notion in a new tab.",
-    unavailable: "The participation form is not open yet. Please check back soon.",
+    title: "Join the initiative",
+    text: "Tell us about your background, the areas you care about and how you would like to contribute.",
+    viaForm: "The registration form opens on Notion in a new tab.",
+    viaEmail: "Write to us with a few lines about yourself, your state or Union Territory, the focus areas you care about and how you would like to contribute.",
   },
   whatsapp: {
     title: "Join the WhatsApp Community",
-    text: "A voluntary space for connection, updates and collaboration. Joining the community is not the same as expressing interest, and does not by itself mean formal participation or a role.",
+    text: "A voluntary space for connection, updates and collaboration. Joining the community is voluntary and does not by itself mean a formal role.",
     guidelines: [
       "Keep conversations respectful, relevant and constructive.",
       "Protect your personal information and that of others.",
       "Do not share confidential material without permission.",
       "Your phone number may be visible to community admins and to members of groups you join.",
     ],
-    unavailable: "The community invitation link is not available yet. Please check back soon.",
   },
 };
