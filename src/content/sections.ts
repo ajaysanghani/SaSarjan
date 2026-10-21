@@ -188,8 +188,7 @@ export const invitation = {
   form: {
     title: "Join the initiative",
     text: "Tell us about your background, the areas you care about and how you would like to contribute.",
-    viaForm: "The registration form opens on Notion in a new tab.",
-    viaEmail: "Write to us with a few lines about yourself, your state or Union Territory, the focus areas you care about and how you would like to contribute.",
+    note: "The application form takes about five minutes.",
   },
   whatsapp: {
     title: "Join the WhatsApp Community",

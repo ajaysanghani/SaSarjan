@@ -65,7 +65,7 @@ export const siteConfig = {
   },
 
   links: {
-    /** Notion registration form. Until set, "Join" buttons open an email to `contactEmail`. */
+    /** Public Notion form, used on /join only as a fallback while NOTION_TOKEN is not set. */
     notionFormUrl: urlSetting("", process.env.NEXT_PUBLIC_NOTION_FORM_URL),
     /** WhatsApp Community invitation. WhatsApp buttons are hidden until this is set. */
     whatsappCommunityUrl: urlSetting("", process.env.NEXT_PUBLIC_WHATSAPP_COMMUNITY_URL),
@@ -91,30 +91,23 @@ export const siteConfig = {
   launchYear: 2026,
 
   nav: [
-    { label: "Purpose", href: "#purpose" },
-    { label: "Focus Areas", href: "#focus-areas" },
-    { label: "Participation", href: "#participation" },
-    { label: "Principles", href: "#principles" },
-    { label: "How We Work", href: "#how-we-work" },
+    { label: "Purpose", href: "/#purpose" },
+    { label: "Focus Areas", href: "/#focus-areas" },
+    { label: "Participation", href: "/#participation" },
+    { label: "Principles", href: "/#principles" },
+    { label: "How We Work", href: "/#how-we-work" },
   ],
 };
 
 export type SiteConfig = typeof siteConfig;
 
-/**
- * Where "Join" buttons go: the Notion form if configured, otherwise an email
- * to the contact address. Null only if neither is set.
- */
-export const joinHref: string | null =
-  siteConfig.links.notionFormUrl ??
-  (siteConfig.contactEmail
-    ? `mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent(`Joining ${siteConfig.name}`)}`
-    : null);
+/** Where "Join" buttons go: the application form on this site. */
+export const joinHref: string = "/join";
 
 /** Lists optional settings that are still missing. Used for the dev-only notice. */
 export function missingRequiredConfig(): string[] {
   const missing: string[] = [];
-  if (!siteConfig.links.notionFormUrl) missing.push("Notion form URL (NEXT_PUBLIC_NOTION_FORM_URL)");
+  if (!process.env.NOTION_TOKEN) missing.push("Notion token for the /join form (NOTION_TOKEN)");
   if (!siteConfig.links.whatsappCommunityUrl)
     missing.push("WhatsApp Community URL (NEXT_PUBLIC_WHATSAPP_COMMUNITY_URL)");
   return missing;

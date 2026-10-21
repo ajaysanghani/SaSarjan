@@ -8,7 +8,7 @@ export function DevConfigNotice() {
   return (
     <div className="dev-notice" role="note">
       <strong>Development notice — not set:</strong> {missing.join("; ")}. Set these in{" "}
-      <code>.env.local</code> or <code>src/config/site.ts</code>. Until then, “Join” opens an email and WhatsApp buttons are hidden.
+      <code>.env.local</code> or <code>src/config/site.ts</code>. Until then, /join links to the fallback form and WhatsApp buttons are hidden.
     </div>
   );
 }

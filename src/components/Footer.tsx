@@ -40,7 +40,7 @@ export function Footer() {
               </li>
             ))}
             <li>
-              <a href="#faq">FAQ</a>
+              <a href="/#faq">FAQ</a>
             </li>
           </ul>
         </nav>
@@ -50,16 +50,17 @@ export function Footer() {
           <ul className="site-footer__list">
             {takePart.map((l) => {
               const isEmail = l.href.startsWith("mailto:");
+              const isExternal = !isEmail && !l.href.startsWith("/");
               return (
                 <li key={l.href}>
                   <a
                     href={l.href}
-                    {...(isEmail ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+                    {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     data-track={l.event}
                     data-track-id="footer"
                   >
                     {l.label}
-                    {!isEmail && <span className="sr-only"> (opens in a new tab)</span>}
+                    {isExternal && <span className="sr-only"> (opens in a new tab)</span>}
                   </a>
                 </li>
               );

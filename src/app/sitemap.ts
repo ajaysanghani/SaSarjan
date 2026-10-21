@@ -6,5 +6,8 @@ export const dynamic = "force-static";
 /** Empty until the production URL is configured. */
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!siteConfig.siteUrl) return [];
-  return [{ url: new URL("/", siteConfig.siteUrl).toString(), changeFrequency: "monthly", priority: 1 }];
+  return [
+    { url: new URL("/", siteConfig.siteUrl).toString(), changeFrequency: "monthly", priority: 1 },
+    { url: new URL("/join", siteConfig.siteUrl).toString(), changeFrequency: "monthly", priority: 0.8 },
+  ];
 }

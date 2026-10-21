@@ -7,7 +7,6 @@ import { Section } from "./Section";
 export function Invitation() {
   const { links, cta, contactEmail } = siteConfig;
   const { form, whatsapp } = invitation;
-  const viaForm = Boolean(links.notionFormUrl);
 
   return (
     <Section id="participate" eyebrow={invitation.eyebrow} heading={invitation.heading} lead={invitation.body}>
@@ -16,11 +15,11 @@ export function Invitation() {
           <ClipboardList className="invite__icon" aria-hidden="true" focusable="false" />
           <h3 className="invite__title">{form.title}</h3>
           <p>{form.text}</p>
-          <p className="invite__note">{viaForm ? form.viaForm : form.viaEmail}</p>
+          <p className="invite__note">{form.note}</p>
           <CtaLink href={joinHref} label={cta.primaryLabel} event="cta_join" placement="invitation" />
           {contactEmail && (
             <p className="invite__fallback">
-              {viaForm ? "Questions? " : "Email: "}
+              Questions?{" "}
               <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
             </p>
           )}
