@@ -37,6 +37,33 @@
   --area-10-bg: #e3e9ec; --area-10-fg: #3b5562;
 }
 
+/* @sasarjan/web-core (shared ecosystem footer band and /ecosystem page), mapped to the tokens above.
+   Only --swc-* tokens: the package's styles never read the site's own variables. */
+:root {
+  --swc-text: var(--text);
+  --swc-muted: var(--muted);
+  --swc-accent: var(--accent-strong); /* the darker magenta, for buttons and links on white */
+  --swc-accent-text: #ffffff;
+  --swc-surface: var(--surface);
+  --swc-card: var(--card);
+  --swc-border: var(--border);
+  --swc-focus: var(--focus);
+  --swc-radius: var(--radius);
+  --swc-max-width: var(--container);
+  --swc-gutter: var(--gutter);
+  --swc-tint: var(--accent-soft);
+  /* The sticky header is already covered by html { scroll-padding-top }. */
+  --swc-scroll-margin: 0.5rem;
+}
+
+/* Inside .site-footer the band sits on the footer's own surface. */
+.site-footer {
+  --swc-footer-bg: transparent;
+  --swc-footer-text: var(--text);
+  --swc-footer-muted: var(--muted);
+  --swc-footer-focus: var(--focus);
+}
+
 @media (min-width: 600px) {
   :root {
     --gutter: 1.5rem;

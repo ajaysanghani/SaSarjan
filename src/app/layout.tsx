@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { siteConfig } from "@/config/site";
+import "@sasarjan/web-core/styles.css"; // shared footer band and /ecosystem page; before the site's CSS
 import "./globals.css";
 
 const title = `${siteConfig.name} — Co-creating transparent, inclusive and effective systems`;

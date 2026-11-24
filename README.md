@@ -1,7 +1,7 @@
 # CoCreate India's Future — website
 
-A minimal website for a civic co-creation initiative: a single home page plus a `/join`
-application form. The name "CoCreate India's Future" is a **provisional working name** and can
+A minimal website for a civic co-creation initiative: a single home page, a `/join`
+application form and the shared `/ecosystem` page. The name "CoCreate India's Future" is a **provisional working name** and can
 be changed in one place.
 
 Built with Next.js (App Router), React and TypeScript, using plain CSS and
@@ -73,6 +73,22 @@ The production URL defaults to `https://sasarjan.com`. Override it with `NEXT_PU
 It is used for the canonical URL, `robots.txt` and the sitemap. Vercel already marks preview
 deployments `noindex`.
 
+## Shared SaSarjan ecosystem content
+
+The ecosystem band in the footer and the `/ecosystem` page come from
+[`@sasarjan/web-core`](https://www.npmjs.com/package/@sasarjan/web-core), pinned exactly (currently
+**0.2.1**). Their wording lives in that package, not here.
+
+| What | Where |
+| --- | --- |
+| Package settings (`siteId: "sasarjan"`, `/ecosystem` call to action) | `src/site.config.ts` (server-only) |
+| Footer band (`<SharedFooter variant="band" />`, condensed on `/ecosystem`) | `src/components/Footer.tsx` |
+| `/ecosystem` page (`IntroductionPage`, `introductionMetadata`) | `src/app/ecosystem/page.tsx` |
+| Colours (`--swc-*` tokens mapped to the site tokens) | top of `src/app/globals.css` |
+
+Dependabot (`.github/dependabot.yml`) opens a weekly PR when a new version is published. Check the
+footer and `/ecosystem` on that PR's Vercel preview before merging.
+
 ## Deploy on Vercel
 
 1. Go to [vercel.com/new](https://vercel.com/new) and import this GitHub repository. Vercel detects Next.js and pnpm on its own.
@@ -107,12 +123,14 @@ applicable law, and describe the analytics in the privacy notice.
 ```
 src/
   app/          layout (metadata), page, globals.css, robots, sitemap, icon
+    ecosystem/  /ecosystem page (shared, from @sasarjan/web-core)
     join/       /join page and its server action (actions.ts)
   components/   Header, MobileNav, Hero, Purpose, FocusAreas, Pathways, Principles,
                 Inclusion, Process, Invitation, Faq, Footer, CtaLink, Section, JoinForm, …
   config/       site.ts — central configuration
   content/      editable copy for each section and the join form
   lib/          analytics helper, join form validation (join.ts), Notion client (notion.ts)
+  site.config.ts  settings for the shared @sasarjan/web-core footer band and /ecosystem page
 ```
 
 Future additions (working groups, published proposals, updates, other languages) can be built as
