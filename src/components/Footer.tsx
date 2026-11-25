@@ -23,7 +23,7 @@ export function Footer({ condensed = false }: { condensed?: boolean }) {
   ].filter(Boolean) as { label: string; href: string; event: string }[];
 
   const legal = [
-    links.privacyNoticeUrl && { label: "Privacy notice", href: links.privacyNoticeUrl },
+    { label: "Privacy notice", href: links.privacyNoticeUrl },
     links.termsUrl && { label: "Terms", href: links.termsUrl },
   ].filter(Boolean) as { label: string; href: string }[];
 

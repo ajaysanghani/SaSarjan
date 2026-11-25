@@ -15,7 +15,7 @@ Tick items here when their issue is closed.
 - [x] **Production domain**: sasarjan.com and www.sasarjan.com serve the site from Vercel.
 
 ### Recommended before wider promotion
-- [ ] **Privacy notice**: the site now collects personal data itself (name, email, state, role and experience, plus optional phone, age group and gender) and stores it in Notion. Publish a notice and set `NEXT_PUBLIC_PRIVACY_NOTICE_URL`. Cover what is collected, why, who can see it, how long it is kept, how to ask for deletion, and that Notion processes the data. Consider India's DPDP Act, 2023. Link it from the form's consent text as well.
+- [x] **Privacy notice**: published at `/privacy` (content in `src/content/privacy.ts`). It is linked from the footer, the data FAQ and the consent text. `NEXT_PUBLIC_PRIVACY_NOTICE_URL` is optional and overrides it. Originally: the site now collects personal data itself (name, email, state, role and experience, plus optional phone, age group and gender) and stores it in Notion. Publish a notice and set `NEXT_PUBLIC_PRIVACY_NOTICE_URL`. Cover what is collected, why, who can see it, how long it is kept, how to ask for deletion, and that Notion processes the data. Consider India's DPDP Act, 2023. Link it from the form's consent text as well.
 - [ ] **Contact email**: defaults to `info@sasarjan.com`. It is in the footer, the `/join` sidebar and the form's error message, so make sure someone monitors it.
 - [ ] **Terms of participation** (optional): set `NEXT_PUBLIC_TERMS_URL`.
 - [ ] **Organisational structure**: once confirmed, update the "Is this a political party…" FAQ in `src/content/faqs.ts`.
@@ -30,8 +30,8 @@ The form, its privacy note and the FAQ make these statements. Make sure they sta
 - [x] Age group and gender are **optional**, and the form says why they are asked.
 - [x] Focus areas, contribution tracks, expertise and languages allow **multiple selections**.
 - [x] A required consent checkbox comes before submission.
-- [ ] The consent text links to the privacy notice (once it exists).
-- [ ] The FAQ "How will my information be used?" says applications are stored in Notion. At the moment it only says so when the fallback form URL is set.
+- [x] The consent text links to the privacy notice.
+- [x] The FAQ "How will my information be used?" says applications are stored in Notion.
 - [ ] The success message says "Our core team reads every application". Agree who reviews new rows in Notion and how often.
 - [ ] Only the people who need it can see the Contributor Applications database in Notion, and the integration is connected to that database only.
 - [ ] After any change to select options in Notion, update `src/content/join-form.ts` to match exactly.

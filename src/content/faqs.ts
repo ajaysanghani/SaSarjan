@@ -94,17 +94,11 @@ export const faqs: Faq[] = [
     question: "How will my information be used?",
     answer: [
       "The information you choose to share when you join is used to understand your interests and to contact you about participation. We ask only for what is useful for that purpose — never for Aadhaar numbers or identity documents. Any demographic questions are optional.",
-      ...(links.notionFormUrl
-        ? [
-            "The registration form is hosted on Notion, a third-party service, so Notion's own terms and privacy policy also apply.",
-          ]
-        : []),
+      "Applications are stored in a private Notion database that only our core organising team can see. Notion is a third-party service, so its own terms and privacy policy also apply.",
       ...(contactEmail
         ? [`For questions about your information, contact ${contactEmail}.`]
         : []),
     ],
-    link: links.privacyNoticeUrl
-      ? { label: "Read the privacy notice", href: links.privacyNoticeUrl, external: true }
-      : undefined,
+    link: { label: "Read the privacy notice", href: links.privacyNoticeUrl, external: !links.privacyNoticeUrl.startsWith("/") },
   },
 ];
