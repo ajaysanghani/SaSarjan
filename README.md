@@ -26,6 +26,7 @@ Production builds never show this notice.
 | What | Where |
 | --- | --- |
 | Name, wordmark, tagline, hero text, CTA labels, nav | `src/config/site.ts` |
+| "Who we are" people and early updates (section hidden while empty) | `team` and `updates` in `src/config/site.ts` |
 | Notion token (server-only) | env var `NOTION_TOKEN` only (see `.env.example`) |
 | WhatsApp Community, fallback Notion form, privacy/terms URLs, contact email, production URL | env vars (see `.env.example`) **or** the first `""` argument in `src/config/site.ts` |
 | Focus areas | `src/content/focus-areas.ts` |

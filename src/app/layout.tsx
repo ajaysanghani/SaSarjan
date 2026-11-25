@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Source_Serif_4 } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import "@sasarjan/web-core/styles.css"; // shared footer band and /ecosystem page; before the site's CSS
 import "./globals.css";
@@ -6,6 +7,10 @@ import "./globals.css";
 const title = `${siteConfig.name} — Co-creating transparent, inclusive and effective systems`;
 const description =
   "A civic co-creation initiative inviting people across India's states, Union Territories, professions, generations and languages to collaborate on public systems, civic participation and collective prosperity.";
+
+// Self-hosted by Next.js at build time: no render-blocking request to Google Fonts.
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-inter", display: "swap" });
+const serif = Source_Serif_4({ subsets: ["latin"], weight: "600", variable: "--font-source-serif", display: "swap" });
 
 // Index only once the production domain is configured, so preview deployments stay out of search.
 const indexable = Boolean(siteConfig.siteUrl);
@@ -35,7 +40,7 @@ export const metadata: Metadata = {
     description,
     ...(siteConfig.siteUrl && { url: "/" }),
   },
-  twitter: { card: "summary", title, description },
+  twitter: { card: "summary_large_image", title, description },
   robots: indexable ? { index: true, follow: true } : { index: false, follow: false },
 };
 
@@ -46,15 +51,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" id="top">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en-IN" id="top" className={`${inter.variable} ${serif.variable}`}>
       <body>{children}</body>
     </html>
   );

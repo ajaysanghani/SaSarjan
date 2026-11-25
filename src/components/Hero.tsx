@@ -15,6 +15,7 @@ export function Hero() {
               {p}
             </p>
           ))}
+          {hero.ask && <p className="hero__ask">{hero.ask}</p>}
           <div className="cta-row">
             <CtaLink
               href={joinHref}
