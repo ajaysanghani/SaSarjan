@@ -1,13 +1,13 @@
 # CoCreate India's Future — website
 
 A minimal website for a civic co-creation initiative: a single home page, a `/join`
-application form and the shared `/ecosystem` page. The name "CoCreate India's Future" is a **provisional working name** and can
+application form, the shared `/ecosystem` page and the ecosystem-wide `/ecosystem/join` form. The name "CoCreate India's Future" is a **provisional working name** and can
 be changed in one place.
 
 Built with Next.js (App Router), React and TypeScript, using plain CSS and
 [`lucide-react`](https://lucide.dev) icons. Pages are pre-rendered as static HTML. The only
-server code is the `/join` server action, which saves applications to a Notion database
-through the Notion API. There is no database of our own, no CMS and no tracking.
+server code is the two form server actions (`/join` and `/ecosystem/join`), which save
+submissions to Notion databases through the Notion API. There is no database of our own, no CMS and no tracking.
 
 ## Local setup
 
@@ -55,6 +55,29 @@ are logged on the server as `[join] Could not save application`.
 Until `NOTION_TOKEN` is set, `/join` shows "The application form is being set up" and links to
 `NEXT_PUBLIC_NOTION_FORM_URL`, or to an email to the contact address if no form URL is set.
 
+### Join the Ecosystem form (`/ecosystem/join`)
+
+A short form for the whole SaSarjan ecosystem: name, email and participation interest (required),
+plus organisation, initiative, skills, contribution and message. The /ecosystem page's "Become a
+CoCreator" button and pathway actions ("Join as a volunteer", …) link here, with `?interest=<id>`
+preselecting the interest; the other ecosystem sites can link to `https://sasarjan.com/ecosystem/join`.
+
+- **Storage:** the same Notion integration as `/join` (`src/lib/notion.ts`), writing to the
+  **Ecosystem Join Requests** database under *SaSarjan Home Page* (Review Status "New").
+  `NOTION_ECOSYSTEM_DATA_SOURCE_ID` overrides the data source. The interest and initiative options
+  in `src/lib/ecosystem-join.ts` (interests come from `@sasarjan/web-core`) must match the database's
+  options.
+- **Validation** runs on the server (`parseEcosystemJoin`). **Spam:** a hidden honeypot (bots get a
+  quiet success, nothing is saved) and an in-memory rate limit of 5 attempts per 10 minutes per IP
+  (best-effort: per serverless instance).
+- **No false confirmations:** the success message appears only after Notion accepted the row.
+  Until `NOTION_TOKEN` is set, the page shows "The joining form is being set up" with the contact
+  email, and `site.config.ts` leaves `cocreator` unset so /ecosystem hides its join buttons.
+
+**To switch it on** (one step, shared with `/join`): in Notion, connect the site's integration to
+both *Contributor Applications* and *Ecosystem Join Requests* (⋯ → Connections), set
+`NOTION_TOKEN` in Vercel, and redeploy.
+
 ### External URLs
 
 - `NEXT_PUBLIC_WHATSAPP_COMMUNITY_URL` is the WhatsApp Community invitation link. WhatsApp buttons and the community card appear only once it is set.
@@ -83,7 +106,8 @@ The ecosystem band in the footer and the `/ecosystem` page come from
 | --- | --- |
 | Package settings (`siteId: "sasarjan"`, `/ecosystem` call to action) | `src/site.config.ts` (server-only) |
 | Footer band (`<SharedFooter variant="band" />`, condensed on `/ecosystem`) | `src/components/Footer.tsx` |
-| `/ecosystem` page (`IntroductionPage`, `introductionMetadata`) | `src/app/ecosystem/page.tsx` |
+| `/ecosystem` page (`IntroductionPage`), its metadata and JSON-LD | `src/app/ecosystem/page.tsx` |
+| `/ecosystem` share image (1200×630, `next/og`) | `src/lib/ecosystem-og.tsx` |
 | Colours (`--swc-*` tokens mapped to the site tokens) | top of `src/app/globals.css` |
 
 Dependabot (`.github/dependabot.yml`) opens a weekly PR when a new version is published. Check the
