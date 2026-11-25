@@ -1,7 +1,13 @@
+import { SharedFooter } from "@sasarjan/web-core";
 import { joinHref, siteConfig } from "@/config/site";
+import { site } from "@/site.config";
 import { Wordmark } from "./Wordmark";
 
-export function Footer() {
+/**
+ * Site footer with the shared SaSarjan ecosystem band (`@sasarjan/web-core`).
+ * Pass `condensed` on pages that already show the ecosystem tagline and introduction (/ecosystem).
+ */
+export function Footer({ condensed = false }: { condensed?: boolean }) {
   const { name, tagline, nav, links, contactEmail, social, launchYear, cta } = siteConfig;
   const year = new Date().getFullYear();
   const years = year > launchYear ? `${launchYear}–${year}` : `${launchYear}`;
@@ -73,6 +79,8 @@ export function Footer() {
           </ul>
         </div>
       </div>
+
+      <SharedFooter variant="band" site={site} condensed={condensed} />
 
       <div className="container site-footer__bottom">
         <p>

@@ -1,0 +1,21 @@
+# Upgrade PRs for the shared SaSarjan footer band and /ecosystem page (@sasarjan/web-core).
+# See SaSarjan-Common-Core-Content docs/VERCEL-INTEGRATION.md and docs/RELEASE.md ("Upgrading a site").
+# Each PR gets a Vercel preview; review the footer and /ecosystem there before merging.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: "@sasarjan/web-core"
+    # The pin is exact (pnpm add -E); "increase" keeps it exact.
+    versioning-strategy: increase
+    groups:
+      sasarjan-web-core:
+        patterns:
+          - "@sasarjan/web-core"
+    labels:
+      - sasarjan-web-core
+    commit-message:
+      prefix: deps

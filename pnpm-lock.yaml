@@ -11,6 +11,9 @@ importers:
 
   .:
     dependencies:
+      '@sasarjan/web-core':
+        specifier: 0.2.1
+        version: 0.2.1(react-dom@19.1.10(react@19.1.10))(react@19.1.10)
       lucide-react:
         specifier: 0.544.0
         version: 0.544.0(react@19.1.10)
@@ -253,6 +256,13 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@sasarjan/web-core@0.2.1':
+    resolution: {integrity: sha512-srb+J0kDSVWNVES4PK1TriDnmGIx0MMXBZ/KgJ+scY06qkzqQ5sU+O3T954noL/ls4yJvhenK5WEG8D/OrJQgg==}
+    engines: {node: '>=20.9'}
+    peerDependencies:
+      react: ^18.3.0 || ^19.0.0
+      react-dom: ^18.3.0 || ^19.0.0
+
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
 
@@ -369,6 +379,9 @@ packages:
 
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+
+  zod@4.6.7:
+    resolution: {integrity: sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==}
 
 snapshots:
 
@@ -500,6 +513,12 @@ snapshots:
   '@next/swc-win32-x64-msvc@15.5.28':
     optional: true
 
+  '@sasarjan/web-core@0.2.1(react-dom@19.1.10(react@19.1.10))(react@19.1.10)':
+    dependencies:
+      react: 19.1.10
+      react-dom: 19.1.10(react@19.1.10)
+      zod: 4.6.7
+
   '@swc/helpers@0.5.15':
     dependencies:
       tslib: 2.8.1
@@ -620,3 +639,5 @@ snapshots:
   typescript@5.9.3: {}
 
   undici-types@6.21.0: {}
+
+  zod@4.6.7: {}
