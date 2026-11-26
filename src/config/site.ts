@@ -96,6 +96,7 @@ export const siteConfig = {
     { label: "Participation", href: "/#participation" },
     { label: "Principles", href: "/#principles" },
     { label: "How We Work", href: "/#how-we-work" },
+    { label: "Ecosystem", href: "/ecosystem" },
   ],
 };
 
@@ -103,6 +104,12 @@ export type SiteConfig = typeof siteConfig;
 
 /** Where "Join" buttons go: the application form on this site. */
 export const joinHref: string = "/join";
+
+/**
+ * The "Join the Ecosystem" form for the whole SaSarjan ecosystem. The other ecosystem sites can
+ * link to it as https://sasarjan.com/ecosystem/join.
+ */
+export const ecosystemJoinHref = "/ecosystem/join";
 
 /** Lists optional settings that are still missing. Used for the dev-only notice. */
 export function missingRequiredConfig(): string[] {

@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@sasarjan/web-core": "0.2.1",
+    "@sasarjan/web-core": "0.3.0",
     "lucide-react": "0.544.0",
-    "next": "15.5.28",
+    "next": "15.5.29",
     "react": "19.1.10",
     "react-dom": "19.1.10",
     "server-only": "0.0.1"

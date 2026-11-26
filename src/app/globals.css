@@ -316,6 +316,7 @@ main:focus {
 
 .site-nav__link {
   display: inline-block;
+  white-space: nowrap;
   padding: 0.5rem 0.65rem;
   color: var(--text);
   font-size: 0.9375rem;
@@ -375,7 +376,8 @@ main:focus {
   width: 100%;
 }
 
-@media (min-width: 960px) {
+/* Six links, the logo and the CTA fit on one line from about 1100px; below that, the menu button. */
+@media (min-width: 1100px) {
   .site-nav,
   .site-header__cta {
     display: block;

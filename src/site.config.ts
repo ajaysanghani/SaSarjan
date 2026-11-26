@@ -1,6 +1,7 @@
 import "server-only";
 import { defineSiteConfig } from "@sasarjan/web-core/config";
-import { joinHref, siteConfig } from "@/config/site";
+import { ecosystemJoinHref, joinHref, siteConfig } from "@/config/site";
+import { notionConfigured } from "@/lib/notion";
 
 const { nav, launchYear } = siteConfig;
 
@@ -11,10 +12,14 @@ const { nav, launchYear } = siteConfig;
  * Deliberately unset:
  * - `siteName`: the ecosystem directory shows "SaSarjan", not the provisional site name.
  * - `footer.contactEmail`: whether info@sasarjan.com becomes the shared contact is still open.
- * - `cocreator`: no "Become a CoCreator" destination exists yet, so that call to action stays hidden.
+ *
+ * `cocreator` points "Become a CoCreator" and the /ecosystem pathway actions at the "Join the
+ * Ecosystem" form, but only once that form can save (NOTION_TOKEN is set when the site is built).
+ * Until then those calls to action stay hidden rather than lead to a form that cannot work.
  */
 export const site = defineSiteConfig({
   siteId: "sasarjan",
+  ...(notionConfigured() && { cocreator: { href: ecosystemJoinHref } }),
   footer: {
     // Shown only by the `full` variant. This site renders `band` inside its own footer.
     siteLinks: [
