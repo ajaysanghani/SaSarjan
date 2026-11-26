@@ -15,9 +15,9 @@
   --accent-soft: #fbe9f2;
   --focus: #1d4ed8;
 
-  --font-sans: "Inter", "Noto Sans", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", Roboto,
+  --font-sans: var(--font-inter), "Inter", "Noto Sans", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", Roboto,
     sans-serif;
-  --font-serif: "Source Serif 4", Georgia, "Noto Serif", "Noto Serif Devanagari", serif;
+  --font-serif: var(--font-source-serif), "Source Serif 4", Georgia, "Noto Serif", "Noto Serif Devanagari", serif;
 
   --radius: 10px;
   --container: 72rem;
@@ -1104,12 +1104,6 @@ main:focus {
   max-width: 28rem;
 }
 
-.site-footer__status {
-  margin-top: 1rem;
-  color: var(--muted);
-  font-size: 0.875rem;
-}
-
 .site-footer__heading {
   margin-bottom: 0.75rem;
   color: var(--accent);
@@ -1603,4 +1597,121 @@ main:focus {
 
 .dev-notice code {
   font-size: 0.8125rem;
+}
+
+/* --------------------------------------------------------------------------
+   Hero ask, join "Tell us more", Who we are, Hindi summary, mobile tweaks
+   -------------------------------------------------------------------------- */
+
+.hero__ask {
+  max-width: 38rem;
+  margin-top: 1.25rem;
+  font-weight: 600;
+  color: var(--text, inherit);
+}
+
+.join-more {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.join-more[open] > .join-section + .join-section {
+  margin-top: 1.5rem;
+}
+
+.join-more__summary {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.join-more[open] > .join-more__summary {
+  margin-bottom: 1.5rem;
+}
+
+.join-more__title {
+  font-weight: 600;
+  color: var(--accent-strong);
+}
+
+.team-list {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  list-style: none;
+  padding: 0;
+}
+
+.team-card {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.team-card__photo {
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.team-card__initial {
+  display: grid;
+  place-items: center;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.team-card__name {
+  display: block;
+  font-weight: 600;
+}
+
+.team-card__role {
+  display: block;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.team-updates__heading {
+  margin: 2rem 0 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+}
+
+.team-updates {
+  display: grid;
+  gap: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+.team-updates__date {
+  font-weight: 600;
+}
+
+.hindi .section__lead {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+/* Footer links: at least 24px tall so they are easy to tap. */
+.site-footer__list a {
+  display: inline-block;
+  min-height: 24px;
+  padding-block: 2px;
+}
+
+/* On phones, hide the example lists so ten focus areas scroll faster. */
+@media (max-width: 599px) {
+  .area-card__examples {
+    display: none;
+  }
 }

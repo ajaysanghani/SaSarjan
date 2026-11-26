@@ -57,7 +57,18 @@ export const siteConfig = {
       "India's challenges are interconnected. Their solutions require people who understand different parts of society to learn from one another and work together.",
       "We are bringing together people across expertise, generations, professions and regions to co-create transparent, inclusive and effective systems that serve people, strengthen communities and regenerate nature.",
     ],
+    /** One concrete line on what joining means, shown just above the buttons. */
+    ask: "Join a working group on an area you care about. Give what time you can, even a few hours a month.",
   },
+
+  /**
+   * "Who we are" section on the home page. Hidden while empty: add real people only.
+   * `photo` is a path under /public (e.g. "/team/name.jpg") or null for an initial.
+   */
+  team: [] as { name: string; role: string; photo: string | null; url?: string }[],
+
+  /** Short early updates shown under "Who we are". Hidden while empty. Newest first. */
+  updates: [] as { date: string; text: string }[],
 
   cta: {
     primaryLabel: "Join the Initiative",
@@ -85,7 +96,7 @@ export const siteConfig = {
    * Production URL (e.g. "https://example.org"). Used for canonical URL,
    * sitemap and robots. Vercel marks preview deployments noindex on its own.
    */
-  siteUrl: urlSetting("https://sasarjan.com", process.env.NEXT_PUBLIC_SITE_URL),
+  siteUrl: urlSetting("https://www.sasarjan.com", process.env.NEXT_PUBLIC_SITE_URL),
 
   /** Copyright start year. Footer shows "2026" or "2026–<current year>". */
   launchYear: 2026,

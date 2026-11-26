@@ -11,7 +11,7 @@ import { focusAreas } from "./focus-areas";
 export const joinPage = {
   eyebrow: "Participate",
   heading: "Join CoCreate India's Future",
-  lead: "We are bringing together people across expertise, generations and regions to co-create transparent, inclusive and effective systems. Tell us about your experience and how you would like to contribute. It takes about five minutes.",
+  lead: "We are bringing together people across expertise, generations and regions to co-create transparent, inclusive and effective systems. Tell us about your experience and how you would like to contribute. It takes about one minute, and you can add more detail if you like.",
   privacy:
     "We never ask for Aadhaar numbers or identity documents. Questions about age and gender are optional and help us see who is missing.",
   next: {
