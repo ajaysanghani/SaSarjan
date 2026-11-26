@@ -30,16 +30,19 @@ const fieldOrder: FieldName[] = [
   "email",
   "phone",
   "state",
-  "city",
-  "role",
-  "linkedin",
   "tracks",
+  "city",
+  "linkedin",
+  "role",
   "achievements",
   "offer",
   "learn",
   "referredBy",
   "consent",
 ];
+
+/** Fields inside the folded "Tell us more" section. */
+const optionalFields: FieldName[] = ["city", "linkedin", "role", "achievements", "offer", "learn", "referredBy"];
 
 const fieldLabels: Partial<Record<FieldName, string>> = {
   fullName: "Full name",
@@ -91,6 +94,7 @@ export function JoinForm({ contactEmail }: { contactEmail: string | null }) {
   const errors: FieldErrors = state.status === "error" ? state.errors : {};
   const v: Partial<Application> = state.status === "error" ? state.values : {};
   const errorList = fieldOrder.filter((name) => errors[name]);
+  const moreHasErrors = optionalFields.some((name) => errors[name]);
 
   return (
     // React resets a form after its action runs, and selects do not reliably restore their
@@ -172,35 +176,7 @@ export function JoinForm({ contactEmail }: { contactEmail: string | null }) {
             </select>
             <ErrorText name="state" errors={errors} />
           </div>
-          <TextField name="city" label="City / District" autoComplete="address-level2" errors={errors} value={v.city} />
-          <TextField
-            name="linkedin"
-            label="LinkedIn or website"
-            type="url"
-            inputMode="url"
-            autoComplete="url"
-            placeholder="linkedin.com/in/your-name"
-            errors={errors}
-            value={v.linkedin}
-          />
         </div>
-        <TextField
-          name="role"
-          label="Current role and organisation"
-          required
-          autoComplete="organization-title"
-          hint="For example: Former Chief Secretary, Government of X; Founder, Y; PhD scholar, Z."
-          errors={errors}
-          value={v.role}
-        />
-        <ChoiceGroup
-          name="experience"
-          legend="Years of experience"
-          type="radio"
-          options={experienceLevels}
-          selected={v.experience ? [v.experience] : []}
-          errors={errors}
-        />
       </fieldset>
 
       <fieldset className="join-section">
@@ -245,57 +221,97 @@ export function JoinForm({ contactEmail }: { contactEmail: string | null }) {
           selected={v.focusAreas ?? []}
           errors={errors}
         />
-        <ChoiceGroup
-          name="expertise"
-          legend="Areas of expertise"
-          type="checkbox"
-          options={expertiseAreas}
-          selected={v.expertise ?? []}
-          errors={errors}
-        />
-        <ChoiceGroup
-          name="time"
-          legend="Time you can give"
-          type="radio"
-          options={timeCommitments}
-          selected={v.time ? [v.time] : []}
-          errors={errors}
-        />
       </fieldset>
 
-      <fieldset className="join-section">
-        <legend className="join-section__title">Your experience</legend>
-        <TextArea
-          name="achievements"
-          label="Key achievements and leadership experience"
-          required
-          hint="The two or three most significant things you have led, built or achieved."
-          rows={6}
-          errors={errors}
-          value={v.achievements}
-        />
-        <TextArea name="offer" label="What can you offer?" rows={4} errors={errors} value={v.offer} />
-        <TextArea name="learn" label="What would you like to learn?" rows={3} errors={errors} value={v.learn} />
-      </fieldset>
+      {/* Optional details stay folded so the first step is short; opened again if one has an error. */}
+      <details className="join-more" open={moreHasErrors || undefined}>
+        <summary className="join-more__summary">
+          <span className="join-more__title">Tell us more (optional)</span>
+          <span className="join-hint">Your role, experience and languages help us match you faster. About three minutes.</span>
+        </summary>
 
-      <fieldset className="join-section">
-        <legend className="join-section__title">A little more about you</legend>
-        <p className="join-hint">{joinPage.privacy}</p>
-        <ChoiceGroup
-          name="languages"
-          legend="Languages you can work in"
-          type="checkbox"
-          options={languages}
-          selected={v.languages ?? []}
-          errors={errors}
-        />
-        <div className="join-grid">
-          <SelectField name="ageGroup" label="Age group (optional)" options={ageGroups} value={v.ageGroup} />
-          <SelectField name="gender" label="Gender (optional)" options={genders} value={v.gender} />
-          <SelectField name="heardFrom" label="How did you hear about us?" options={heardFrom} value={v.heardFrom} />
-          <TextField name="referredBy" label="Referred by" hint="If someone suggested you apply." errors={errors} value={v.referredBy} />
-        </div>
-      </fieldset>
+        <fieldset className="join-section">
+          <legend className="join-section__title">Your background</legend>
+          <div className="join-grid">
+            <TextField name="city" label="City / District" autoComplete="address-level2" errors={errors} value={v.city} />
+            <TextField
+              name="linkedin"
+              label="LinkedIn or website"
+              type="url"
+              inputMode="url"
+              autoComplete="url"
+              placeholder="linkedin.com/in/your-name"
+              errors={errors}
+              value={v.linkedin}
+            />
+          </div>
+          <TextField
+            name="role"
+            label="Current role and organisation"
+            autoComplete="organization-title"
+            hint="For example: Former Chief Secretary, Government of X; Founder, Y; PhD scholar, Z."
+            errors={errors}
+            value={v.role}
+          />
+          <ChoiceGroup
+            name="experience"
+            legend="Years of experience"
+            type="radio"
+            options={experienceLevels}
+            selected={v.experience ? [v.experience] : []}
+            errors={errors}
+          />
+          <ChoiceGroup
+            name="expertise"
+            legend="Areas of expertise"
+            type="checkbox"
+            options={expertiseAreas}
+            selected={v.expertise ?? []}
+            errors={errors}
+          />
+          <ChoiceGroup
+            name="time"
+            legend="Time you can give"
+            type="radio"
+            options={timeCommitments}
+            selected={v.time ? [v.time] : []}
+            errors={errors}
+          />
+        </fieldset>
+
+        <fieldset className="join-section">
+          <legend className="join-section__title">Your experience</legend>
+          <TextArea
+            name="achievements"
+            label="Key achievements and leadership experience"
+            hint="The two or three most significant things you have led, built or achieved."
+            rows={5}
+            errors={errors}
+            value={v.achievements}
+          />
+          <TextArea name="offer" label="What can you offer?" rows={4} errors={errors} value={v.offer} />
+          <TextArea name="learn" label="What would you like to learn?" rows={3} errors={errors} value={v.learn} />
+        </fieldset>
+
+        <fieldset className="join-section">
+          <legend className="join-section__title">A little more about you</legend>
+          <p className="join-hint">{joinPage.privacy}</p>
+          <ChoiceGroup
+            name="languages"
+            legend="Languages you can work in"
+            type="checkbox"
+            options={languages}
+            selected={v.languages ?? []}
+            errors={errors}
+          />
+          <div className="join-grid">
+            <SelectField name="ageGroup" label="Age group" options={ageGroups} value={v.ageGroup} />
+            <SelectField name="gender" label="Gender" options={genders} value={v.gender} />
+            <SelectField name="heardFrom" label="How did you hear about us?" options={heardFrom} value={v.heardFrom} />
+            <TextField name="referredBy" label="Referred by" hint="If someone suggested you apply." errors={errors} value={v.referredBy} />
+          </div>
+        </fieldset>
+      </details>
 
       <div className="join-consent">
         <label className="join-check" id="f-consent">

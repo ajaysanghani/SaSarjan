@@ -129,14 +129,12 @@ export function parseApplication(form: FormData): { values: Application; errors:
   if (values.phone && !PHONE.test(values.phone))
     errors.phone = "Enter a phone number using digits, with the country code if outside India.";
   if (!values.state) errors.state = "Choose your state or Union Territory.";
-  if (!values.role) errors.role = "Tell us your current role and organisation.";
   if (linkedinRaw) {
     const url = normaliseUrl(linkedinRaw);
     if (url) values.linkedin = url;
     else errors.linkedin = "Enter a web address, for example linkedin.com/in/your-name.";
   }
   if (values.tracks.length === 0) errors.tracks = "Choose at least one way you would like to contribute.";
-  if (!values.achievements) errors.achievements = "Tell us about your key achievements or experience.";
   if (!values.consent) errors.consent = "Please confirm we may store your information and contact you.";
 
   for (const name of short) {

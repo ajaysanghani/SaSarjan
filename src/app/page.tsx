@@ -4,6 +4,9 @@ import { Faq } from "@/components/Faq";
 import { FocusAreas } from "@/components/FocusAreas";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { HindiSummary } from "@/components/HindiSummary";
+import { StructuredData } from "@/components/StructuredData";
+import { Team } from "@/components/Team";
 import { Hero } from "@/components/Hero";
 import { Inclusion } from "@/components/Inclusion";
 import { Invitation } from "@/components/Invitation";
@@ -28,11 +31,14 @@ export default function Home() {
         <Principles />
         <Inclusion />
         <Process />
+        <Team />
         <Invitation />
         <Faq />
+        <HindiSummary />
       </main>
       <Footer />
       <AnalyticsListener />
+      <StructuredData />
     </>
   );
 }

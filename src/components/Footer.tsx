@@ -34,7 +34,6 @@ export function Footer({ condensed = false }: { condensed?: boolean }) {
           <Wordmark />
           <p className="site-footer__name">{name}</p>
           <p>{tagline}</p>
-          <p className="site-footer__status">This is not a political party or a government programme.</p>
         </div>
 
         <nav aria-label="Footer">

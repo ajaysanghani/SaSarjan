@@ -188,7 +188,7 @@ export const invitation = {
   form: {
     title: "Join the initiative",
     text: "Tell us about your background, the areas you care about and how you would like to contribute.",
-    note: "The application form takes about five minutes.",
+    note: "The application form takes about a minute.",
   },
   whatsapp: {
     title: "Join the WhatsApp Community",

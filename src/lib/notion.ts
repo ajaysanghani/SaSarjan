@@ -1,4 +1,5 @@
 import "server-only";
+import type { EcosystemJoin } from "./ecosystem-join";
 import type { Application } from "./join";
 
 /**
@@ -13,6 +14,12 @@ const NOTION_VERSION = "2025-09-03";
 
 /** Data source of the "Contributor Applications" database in the SaSarjan workspace. */
 const DEFAULT_DATA_SOURCE_ID = "2f9945a0-e41f-474c-8b80-d5a729d1b458";
+
+/**
+ * Data source of the "Ecosystem Join Requests" database (SaSarjan Home Page), written by the
+ * /ecosystem/join form. The integration must be connected to this database too.
+ */
+const DEFAULT_ECOSYSTEM_DATA_SOURCE_ID = "42330dcf-2a7e-818b-a95c-000bb7011d7b";
 
 export function notionConfigured() {
   return Boolean(process.env.NOTION_TOKEN?.trim());
@@ -53,9 +60,33 @@ function toProperties(a: Application) {
 
 /** Creates one row. Throws on failure with Notion's status, error code and message. */
 export async function createApplication(application: Application) {
+  const dataSourceId = process.env.NOTION_CONTRIBUTORS_DATA_SOURCE_ID?.trim() || DEFAULT_DATA_SOURCE_ID;
+  await createPage(dataSourceId, toProperties(application));
+}
+
+/** Creates one "Ecosystem Join Requests" row. Throws on failure like `createApplication`. */
+export async function createEcosystemJoin(join: EcosystemJoin) {
+  const dataSourceId =
+    process.env.NOTION_ECOSYSTEM_DATA_SOURCE_ID?.trim() || DEFAULT_ECOSYSTEM_DATA_SOURCE_ID;
+  // Keys are the exact property names in the Notion database.
+  await createPage(dataSourceId, {
+    Name: { title: [{ type: "text", text: { content: join.name } }] },
+    Email: { email: join.email },
+    "Participation interest": select(join.interest),
+    Organisation: richText(join.organisation),
+    Initiative: select(join.initiative),
+    Skills: richText(join.skills),
+    Contribution: richText(join.contribution),
+    Message: richText(join.message),
+    // The form states, next to its submit button, that submitting agrees to being contacted.
+    "Consent to be contacted": { checkbox: true },
+    "Review Status": { status: { name: "New" } },
+  });
+}
+
+async function createPage(dataSourceId: string, properties: Record<string, unknown>) {
   const token = process.env.NOTION_TOKEN?.trim();
   if (!token) throw new Error("NOTION_TOKEN is not set");
-  const dataSourceId = process.env.NOTION_CONTRIBUTORS_DATA_SOURCE_ID?.trim() || DEFAULT_DATA_SOURCE_ID;
 
   const res = await fetch("https://api.notion.com/v1/pages", {
     method: "POST",
@@ -66,7 +97,7 @@ export async function createApplication(application: Application) {
     },
     body: JSON.stringify({
       parent: { type: "data_source_id", data_source_id: dataSourceId },
-      properties: toProperties(application),
+      properties,
     }),
     cache: "no-store",
     signal: AbortSignal.timeout(15_000),

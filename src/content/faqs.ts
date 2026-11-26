@@ -83,13 +83,6 @@ export const faqs: Faq[] = [
     ],
   },
   {
-    id: "status",
-    question: "Is this a political party or a government initiative?",
-    answer: [
-      "No. This is not a political party or a political campaign, and it is not a government programme. It is not endorsed by any government body.",
-    ],
-  },
-  {
     id: "data",
     question: "How will my information be used?",
     answer: [
