@@ -11,5 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: new URL("/join", siteConfig.siteUrl).toString(), changeFrequency: "monthly", priority: 0.8 },
     { url: new URL("/ecosystem", siteConfig.siteUrl).toString(), changeFrequency: "monthly", priority: 0.7 },
     { url: new URL("/ecosystem/join", siteConfig.siteUrl).toString(), changeFrequency: "monthly", priority: 0.6 },
+    { url: new URL("/privacy", siteConfig.siteUrl).toString(), changeFrequency: "yearly", priority: 0.3 },
   ];
 }

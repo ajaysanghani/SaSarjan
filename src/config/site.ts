@@ -80,8 +80,8 @@ export const siteConfig = {
     notionFormUrl: urlSetting("", process.env.NEXT_PUBLIC_NOTION_FORM_URL),
     /** WhatsApp Community invitation. WhatsApp buttons are hidden until this is set. */
     whatsappCommunityUrl: urlSetting("", process.env.NEXT_PUBLIC_WHATSAPP_COMMUNITY_URL),
-    /** Optional: link to a published privacy notice page. */
-    privacyNoticeUrl: urlSetting("", process.env.NEXT_PUBLIC_PRIVACY_NOTICE_URL),
+    /** Privacy notice. Defaults to the /privacy page on this site; set the env var to use another URL. */
+    privacyNoticeUrl: urlSetting("", process.env.NEXT_PUBLIC_PRIVACY_NOTICE_URL) ?? "/privacy",
     /** Optional: link to published terms of participation. */
     termsUrl: urlSetting("", process.env.NEXT_PUBLIC_TERMS_URL),
   },

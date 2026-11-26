@@ -20,6 +20,7 @@ import {
 } from "@/content/join-form";
 import { type Application, type FieldErrors, type FieldName, LONG_TEXT_MAX } from "@/lib/join";
 import { track } from "@/lib/analytics";
+import { siteConfig } from "@/config/site";
 
 const initialState: JoinState = { status: "idle" };
 
@@ -325,7 +326,11 @@ export function JoinForm({ contactEmail }: { contactEmail: string | null }) {
           />
           <span>
             I agree that the CoCreate India&apos;s Future team may store this information and contact me about
-            participation. <span className="join-req" aria-hidden="true">*</span>
+            participation, as described in the{" "}
+            <a href={siteConfig.links.privacyNoticeUrl} target="_blank" rel="noopener noreferrer">
+              privacy notice<span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            . <span className="join-req" aria-hidden="true">*</span>
             <span className="sr-only"> (required)</span>
           </span>
         </label>
